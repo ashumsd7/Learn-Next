@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 
 import MeetupList from "../components/meetups/MeetupList";
 // import Layout from "../components/layout/Layout";
@@ -29,12 +29,27 @@ const DUMMY_MEETUPS = [
     description: "this is first meet up",
   },
 ];
-const HomePage = () => {
-  return (
+const HomePage = (props) => {
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
 
-      <MeetupList meetups={DUMMY_MEETUPS}></MeetupList>
+  // useEffect(() => {
+  //   setLoadedMeetups(DUMMY_MEETUPS);
+  // }, []);
 
-  );
+  return <MeetupList meetups={props.meetups}></MeetupList>;
 };
+
+export async function getStaticProps() {
+  //  await
+  //  do some api fetch
+
+  // return with props key , and props is object
+
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
+}
 
 export default HomePage;
